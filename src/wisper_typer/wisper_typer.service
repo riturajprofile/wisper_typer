@@ -12,7 +12,9 @@ RestartSec=5
 EnvironmentFile=/root/.wisper-typer
 # Ensure access to uinput and display
 Environment=DISPLAY=:0
-Environment=XAUTHORITY=/home/riturajprofile/.Xauthority
+# Log to systemd journal
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target

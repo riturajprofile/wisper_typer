@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wisper_typer"
-version = "0.0.1"
+version = "0.1.0"
 description = "Ultra-fast CLI AI Dictation tool for Linux using Groq API."
 readme = "README.md"
 requires-python = ">=3.8"

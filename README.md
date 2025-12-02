@@ -79,5 +79,20 @@ To run automatically at startup:
 3.  Enable and start: `sudo systemctl enable --now wisper_typer`.
 
 ## Troubleshooting
+
+### Logs
+All activity is logged to `~/.wisper-typer.log`. View logs with:
+```bash
+tail -f ~/.wisper-typer.log
+```
+
+For service logs, use:
+```bash
+journalctl -u wisper_typer -f
+```
+
+### Common Issues
 - **Permission Denied**: If it crashes or doesn't type, ensure you are running with `sudo`.
 - **No Typing on Wayland**: Ensure `wl-copy` is installed.
+- **Microphone Not Working**: Check your audio input device with `arecord -l`.
+- **API Errors**: Verify your `GROQ_API_KEY` is correct in `~/.wisper-typer`.
