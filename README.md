@@ -9,6 +9,35 @@ Designed for **Wayland** and **X11** with a focus on speed and minimalism.
 - **Global Hotkey**: Press and hold to record (default: F4).
 - **Auto-Typing**: Automatically types the text into any application.
 
+## Why CLI-Based?
+
+wisper-typer is intentionally designed as a **no-GUI, CLI-based tool** for several key advantages:
+
+### 🚀 Performance & Resources
+- **Minimal Memory Footprint**: ~10-20MB vs 200-500MB for GUI apps
+- **Zero UI Overhead**: No window rendering, no graphics libraries
+- **Instant Startup**: Launches in milliseconds, not seconds
+- **Runs in Background**: No screen clutter or visual distraction
+
+### 🌍 Universal Compatibility
+- **Works Everywhere**: Browser, terminal, text editors, chat apps - anywhere you can paste
+- **No App Integration**: Doesn't need plugins for Chrome, Firefox, VS Code, etc.
+- **System-Level**: One tool for all applications instead of per-app extensions
+- **Future-Proof**: Works with apps that don't exist yet
+
+### ⚙️ Simple Deployment
+- **Systemd Service**: Auto-start on boot, runs silently
+- **No Display Required**: Can run on headless systems (with audio)
+- **Remote SSH Friendly**: Control via command line
+- **Easy Automation**: Scriptable and configurable
+
+### 🎯 Design Philosophy
+- **Do One Thing Well**: Transcribe speech and type it - that's it
+- **Stay Out of Your Way**: No windows to manage, no UI to learn
+- **Power User Friendly**: Configure via files, control via hotkeys
+
+A GUI would add complexity without adding value - the global hotkey **is** the interface!
+
 ## Prerequisites
 - Linux OS
 - Python 3.8+
