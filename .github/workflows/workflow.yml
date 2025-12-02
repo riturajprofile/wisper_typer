@@ -21,6 +21,8 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install build
+      - name: Clean old dist files
+        run: rm -rf dist/ build/ *.egg-info
       - name: Build package
         run: python -m build
       - name: Publish package distributions to PyPI
