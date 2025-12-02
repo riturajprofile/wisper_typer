@@ -30,11 +30,15 @@ Ensure you have the required system libraries:
 - **Arch**: `sudo pacman -S portaudio wl-clipboard`
 
 ### 3. Configure
-Create `~/.wisper-typer` with your API key:
+Run `wisper` once to generate the configuration file:
 ```bash
-# ~/.wisper-typer
-GROQ_API_KEY=gsk_XXXX
-WISPER_HOTKEY=f4
+wisper
+```
+It will create `~/.wisper-typer`. Edit it to add your API key:
+```bash
+nano ~/.wisper-typer
+# Add your key: GROQ_API_KEY=gsk_XXXX
+# Default hotkey is ctrl+win
 ```
 
 ### 4. Setup Autostart Service (Optional but Recommended)
@@ -48,7 +52,7 @@ sudo wisper --install-service
 ### 🚀 How to Use
 Once installed (manually or via service), **Wisper Typer runs in the background**.
 
-1.  **Press and Hold** the hotkey (Default: `F4`).
+1.  **Press and Hold** the hotkey (Default: `ctrl+win`).
 2.  **Speak** into your microphone.
 3.  **Release** the hotkey.
 4.  The text will be **automatically typed** into your active window.

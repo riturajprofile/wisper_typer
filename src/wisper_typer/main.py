@@ -15,8 +15,24 @@ load_dotenv(os.path.expanduser("~/.wisper-typer"))
 
 
 def get_config():
+    config_path = os.path.expanduser("~/.wisper-typer")
+    
+    if not os.path.exists(config_path):
+        print(f"⚠️  Config file not found at {config_path}")
+        print("📝 Creating default config file...")
+        with open(config_path, "w") as f:
+            f.write("# Wisper-Linux Configuration\n")
+            f.write("# Get your API key from https://console.groq.com/keys\n")
+            f.write("GROQ_API_KEY=\n")
+            f.write("# Hotkey to trigger recording (default: ctrl+win)\n")
+            f.write("WISPER_HOTKEY=ctrl+win\n")
+        print(f"✅ Created {config_path}")
+        print("❌ Please edit this file and add your GROQ_API_KEY, then run wisper again.")
+        sys.exit(1)
+
+    load_dotenv(config_path)
     api_key = os.getenv("GROQ_API_KEY")
-    hotkey = os.getenv("WISPER_HOTKEY", "f4")
+    hotkey = os.getenv("WISPER_HOTKEY", "ctrl+win")
     return api_key, hotkey
 
 def record_audio(hotkey):
