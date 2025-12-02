@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wisper_typer"
+version = "0.0.1"
+description = "Ultra-fast CLI AI Dictation tool for Linux using Groq API."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Rituraj", email = "riturajprofile.me@gmail.com"}
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Environment :: Console",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Topic :: Utilities"
+]
+dependencies = [
+    "groq",
+    "pyaudio",
+    "keyboard",
+    "pyperclip",
+    "python-dotenv"
+]
+
+[project.scripts]
+wisper = "wisper_typer.main:start"
