@@ -18,28 +18,18 @@ Designed for **Wayland** and **X11** with a focus on speed and minimalism.
 
 ## Installation
 
-The easiest way to install, build, and configure everything (including the service) is to run the setup script:
-
+### 1. Install via Pip
 ```bash
-cd wisper_typer
-sudo ./setup.sh
+pip install wisper_typer
 ```
 
-This script will:
-1.  Install system dependencies (`portaudio`, `wl-clipboard`).
-2.  Create the config file at `~/.wisper-typer`.
-3.  Build and install the python package.
-4.  Set up and start the systemd service.
+### 2. Install System Dependencies
+Ensure you have the required system libraries:
+- **Debian/Ubuntu**: `sudo apt install portaudio19-dev wl-clipboard`
+- **Fedora**: `sudo dnf install portaudio-devel wl-clipboard`
+- **Arch**: `sudo pacman -S portaudio wl-clipboard`
 
-### Manual Installation
-If you prefer to install manually:
-```bash
-pip install .
-```
-
-## Usage
-
-### 1. Configuration
+### 3. Configure
 Create `~/.wisper-typer` with your API key:
 ```bash
 # ~/.wisper-typer
@@ -47,21 +37,36 @@ GROQ_API_KEY=gsk_XXXX
 WISPER_HOTKEY=f4
 ```
 
-### 2. Running
-**Crucial**: You must run with `sudo` **EVERY TIME**.
+### 4. Setup Autostart Service (Optional but Recommended)
+Run this once to install the systemd service so it runs automatically on startup:
+```bash
+sudo wisper --install-service
+```
 
+## Usage
+
+### 🚀 How to Use
+Once installed (manually or via service), **Wisper Typer runs in the background**.
+
+1.  **Press and Hold** the hotkey (Default: `F4`).
+2.  **Speak** into your microphone.
+3.  **Release** the hotkey.
+4.  The text will be **automatically typed** into your active window.
+
+### 🛠️ Managing the Service
+If you installed the service (`sudo wisper --install-service`), it starts automatically on boot.
+
+- **Check Status**: `systemctl status wisper_typer`
+- **Restart**: `sudo systemctl restart wisper_typer`
+- **Stop**: `sudo systemctl stop wisper_typer`
+- **Logs**: `journalctl -u wisper_typer -f` (View real-time logs)
+
+### 🏃 Manual Run (No Service)
+If you didn't install the service, you must run it manually **every time** you want to use it:
 ```bash
 sudo wisper
 ```
-
-#### ❓ Why Sudo?
-The `keyboard` library needs root access to:
-1.  **Read all keystrokes** (to detect your hotkey globally).
-2.  **Inject keystrokes** (to simulate Ctrl+V).
-Without `sudo`, the tool cannot see your hotkey or type the text.
-
-#### 🔄 Autostart (Recommended)
-If you use the systemd service (see below), it runs as root automatically in the background, so you **never** have to type `sudo` manually once it's set up.
+*(Must use `sudo` for global hotkey detection)*
 
 ## Autostart (Systemd)
 To run automatically at startup:

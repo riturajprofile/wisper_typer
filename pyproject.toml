@@ -30,3 +30,6 @@ dependencies = [
 
 [project.scripts]
 wisper = "wisper_typer.main:start"
+
+[tool.setuptools.package-data]
+wisper_typer = ["*.service"]

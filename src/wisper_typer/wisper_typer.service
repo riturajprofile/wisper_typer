@@ -1,0 +1,18 @@
+[Unit]
+Description=Wisper Typer - AI Dictation Service
+After=network.target graphical.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/usr/local/bin
+ExecStart=/usr/local/bin/wisper
+Restart=always
+RestartSec=5
+EnvironmentFile=/root/.wisper-typer
+# Ensure access to uinput and display
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/riturajprofile/.Xauthority
+
+[Install]
+WantedBy=multi-user.target

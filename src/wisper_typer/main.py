@@ -88,7 +88,46 @@ def type_text(text):
     # Simulate Ctrl+V using keyboard (works on Wayland via uinput)
     keyboard.send("ctrl+v")
 
+def install_service():
+    if os.geteuid() != 0:
+        print("❌ Error: Must run as root to install service.")
+        print("Try: sudo wisper --install-service")
+        sys.exit(1)
+
+    print("⚙️  Installing Wisper Typer Service...")
+    
+    # Locate service file within the package
+    import pkg_resources
+    try:
+        service_content = pkg_resources.resource_string(__name__, "wisper_typer.service")
+    except Exception:
+        # Fallback for local dev
+        if os.path.exists("wisper_typer.service"):
+            with open("wisper_typer.service", "rb") as f:
+                service_content = f.read()
+        else:
+            print("❌ Error: Could not find wisper_typer.service file.")
+            sys.exit(1)
+
+    service_path = "/etc/systemd/system/wisper_typer.service"
+    with open(service_path, "wb") as f:
+        f.write(service_content)
+
+    print(f"✅ Service file copied to {service_path}")
+    
+    try:
+        subprocess.run(["systemctl", "daemon-reload"], check=True)
+        subprocess.run(["systemctl", "enable", "wisper_typer"], check=True)
+        subprocess.run(["systemctl", "start", "wisper_typer"], check=True)
+        print("✅ Service started and enabled!")
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Error enabling service: {e}")
+
 def start():
+    if len(sys.argv) > 1 and sys.argv[1] == "--install-service":
+        install_service()
+        return
+
     api_key, hotkey = get_config()
 
     if not api_key:
