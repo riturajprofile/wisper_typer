@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+src/wisper_typer/__init__.py
+src/wisper_typer/main.py
+src/wisper_typer/wisper_typer.service
+src/wisper_typer.egg-info/PKG-INFO
+src/wisper_typer.egg-info/SOURCES.txt
+src/wisper_typer.egg-info/dependency_links.txt
+src/wisper_typer.egg-info/entry_points.txt
+src/wisper_typer.egg-info/requires.txt
+src/wisper_typer.egg-info/top_level.txt

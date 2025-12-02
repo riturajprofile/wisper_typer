@@ -1,0 +1,2 @@
+[console_scripts]
+wisper = wisper_typer.main:start
